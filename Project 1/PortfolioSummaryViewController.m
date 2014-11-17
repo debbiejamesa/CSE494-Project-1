@@ -31,6 +31,7 @@
     NSMutableArray * holdingsData;
     NSDecimalNumber * totalPortfolioValue;
     UIActivityIndicatorView *spinner;
+    NSInteger index;
 }
 
 - (void)viewDidLoad
@@ -55,6 +56,7 @@
     spinner.center = self.view.center;
     spinner.hidesWhenStopped = YES;
     [self.view addSubview:spinner];
+    self.tableView.rowHeight = 44;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -245,6 +247,17 @@
     }
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    index = indexPath.row;
+    // this will ensure that we do not go to details page if clicking on 'Total' cell
+    if(index < portfolio.holdings.count)
+    {
+        portfolio.index = index;
+        [Portfolio updateHoldings:holdingsData];
+    }
 }
 
 @end

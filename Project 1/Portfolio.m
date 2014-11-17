@@ -61,6 +61,32 @@ static Portfolio *thePortfolio = nil;
     return thePortfolio;
 }
 
++(NSMutableArray*)sharedHoldings
+{
+    if (thePortfolio == nil)
+    {
+        thePortfolio = [[Portfolio alloc]init];
+        [Portfolio loadPortfolio];
+    }
+    return thePortfolio.holdingsData;
+}
+
++(void)updateHoldings:(NSMutableArray*)holdingsUpdt
+{
+    thePortfolio.holdingsData = holdingsUpdt;
+}
+
++ (void)updateNumShares:(NSNumber*)numShare index:(NSNumber*)i
+{
+    //thePortfolio.holdings[i]numShares = numShare;
+}
+
++ (Portfolio *) reset
+{
+    thePortfolio = [[Portfolio alloc]init];
+    return thePortfolio;
+}
+
 - (void)savePortfolio
 {
     // Set up encoder.

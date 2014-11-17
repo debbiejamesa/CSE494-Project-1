@@ -23,6 +23,7 @@
 		9D8D95541A09598C00B289A1 /* redarrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D8D95521A09598C00B289A1 /* redarrow.png */; };
 		9D8D95551A09598C00B289A1 /* greenarrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D8D95531A09598C00B289A1 /* greenarrow.png */; };
 		9D8D95571A0978EE00B289A1 /* flatline.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 9D8D95561A0978EE00B289A1 /* flatline.JPG */; };
+		A5EE57531A18334E008B9999 /* StockDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5EE57521A18334E008B9999 /* StockDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,8 @@
 		9D8D95521A09598C00B289A1 /* redarrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redarrow.png; sourceTree = "<group>"; };
 		9D8D95531A09598C00B289A1 /* greenarrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenarrow.png; sourceTree = "<group>"; };
 		9D8D95561A0978EE00B289A1 /* flatline.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = flatline.JPG; sourceTree = "<group>"; };
+		A5EE57511A18334E008B9999 /* StockDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StockDetailViewController.h; sourceTree = "<group>"; };
+		A5EE57521A18334E008B9999 /* StockDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StockDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +121,8 @@
 				669144F11A099C930006A4FA /* PortfolioTableViewCell.h */,
 				669144F21A099C930006A4FA /* PortfolioTableViewCell.m */,
 				664CACF21A0198E100D6B4FF /* Main.storyboard */,
+				A5EE57511A18334E008B9999 /* StockDetailViewController.h */,
+				A5EE57521A18334E008B9999 /* StockDetailViewController.m */,
 				664CAD111A01A68000D6B4FF /* Stock.h */,
 				664CAD121A01A68000D6B4FF /* Stock.m */,
 				664CAD0E1A01A61200D6B4FF /* Portfolio.h */,
@@ -262,6 +267,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				664CAD131A01A68000D6B4FF /* Stock.m in Sources */,
+				A5EE57531A18334E008B9999 /* StockDetailViewController.m in Sources */,
 				664CACF11A0198E100D6B4FF /* PortfolioSummaryViewController.m in Sources */,
 				9D7BF61A1A0346F10037E6D9 /* AddStockViewController.m in Sources */,
 				664CACEB1A0198E100D6B4FF /* AppDelegate.m in Sources */,

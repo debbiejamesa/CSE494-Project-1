@@ -21,7 +21,9 @@
     <NSCoding>
 
 @property NSMutableArray *holdings;
+@property NSMutableArray *holdingsData;
 @property NSMutableArray *watching;
+@property NSInteger index;
 
 - (void)addHolding:(Stock *)stock withCallback:(void(^)(int result))callback;
 - (void)addWatching:(Stock *)stock withCallback:(void(^)(int result))callback;
@@ -29,5 +31,8 @@
 - (id)initWithCoder:(NSCoder *)aDecoder;
 - (void)encodeWithCoder:(NSCoder *)aCoder;
 - (void)savePortfolio;
++ (Portfolio *) reset;
++ (NSMutableArray*)sharedHoldings;
++ (void)updateHoldings:(NSMutableArray*)holdingsUpdt;
 
 @end

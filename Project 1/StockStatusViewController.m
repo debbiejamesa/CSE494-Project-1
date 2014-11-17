@@ -38,6 +38,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // The Portfolio singleton will be initialized here, because this is the initial view.
+    //portfolio = [Portfolio reset];
     portfolio = [Portfolio sharedInstance];
     holdingsData = [[NSMutableArray alloc] init];
     watchingData = [[NSMutableArray alloc] init];
@@ -105,9 +106,10 @@
                 if ([results isKindOfClass:[NSDictionary class]])
                 {
                     // If there are any stocks in the "Holding" category, and the ticker symbol from the Web request data matches the ticker symbol the user has for their held stock:
-                    if (portfolio.holdings.count > 0 && [results[@"Symbol"] isEqualToString:[portfolio.holdings[0] ticker]])
+                    if (portfolio.holdings.count > 0 && [results[@"Symbol"] isEqualToString:[portfolio.holdings[0] ticker]] && ![results[@"Change"]isEqualToString:@"<null>"])
                     {
-                        // Set the status image for this stock.
+                        // Set the status image for this stock. // Hart -- here is where we run into a problem
+                        // should perform some kind of check on results before calling function?
                         [self getStatusImage:results];
                         // Calculate and set the percent change for this stock.
                         [self getPercentage:results];
@@ -118,7 +120,7 @@
                     {
                         for (NSMutableDictionary * dict in results) // For each stock object returned by the Web service:
                         {
-                            if ([dict[@"Symbol"] isEqualToString:[s ticker]]) // If the user's stock ticker matches the returned stock's ticker, save the stock's information.
+                            if ([dict[@"Symbol"] isEqualToString:[s ticker]] && ![dict[@"Change"]isEqualToString:@"<null>"]) // If the user's stock ticker matches the returned stock's ticker, save the stock's information.
                             {
                                 // Set the status image for this stock.
                                 [self getStatusImage:dict];
@@ -135,7 +137,7 @@
                 if ([results isKindOfClass:[NSDictionary class]])
                 {
                     // If there are any stocks in the "Watching" category, and the ticker symbol from the Web request data matches the ticker symbol the user has for their watched stock:
-                    if (portfolio.watching.count > 0 && [results[@"Symbol"] isEqualToString:[portfolio.watching[0] ticker]])
+                    if (portfolio.watching.count > 0 && [results[@"Symbol"] isEqualToString:[portfolio.watching[0] ticker]]&& ![results[@"Change"]isEqualToString:@"<null>"])
                     {
                         // Set the status image for this stock.
                         [self getStatusImage:results];
@@ -148,7 +150,7 @@
                     {
                         for (NSMutableDictionary * dict in results) // For each stock returned by the Web service:
                         {
-                            if ([dict[@"Symbol"] isEqualToString:[s ticker]]) // If the user's stock ticker matches the returned stock's ticker, save the stock's information.
+                            if ( [dict[@"Symbol"] isEqualToString:[s ticker]] && ![dict[@"Change"]isEqualToString:@"<null>"] ) // If the user's stock ticker matches the returned stock's ticker, save the stock's information.
                             {
                                 // Set the status image for this stock.
                                 [self getStatusImage:dict];
@@ -205,6 +207,14 @@
 - (void)getStatusImage:(NSMutableDictionary *)dict
 {
     // The status image for the stock is a green up arrow if it gained value, a red down arrow if it lost value, and a flat line if it hasn't changed.
+    //NSObject *test = [dict[@"Change"] NSObject];
+    if ([dict[@"Change"]isEqualToString:@"<null>"])
+    {
+        // handle errors
+        return;
+    }
+    else
+    {
     double change = [dict[@"Change"] doubleValue];
     if (change > 0) {
         dict[@"Image"] = GREEN_ARROW_FILENAME;
@@ -212,6 +222,7 @@
         dict[@"Image"] = RED_ARROW_FILENAME;
     } else {
         dict[@"Image"] = FLAT_LINE_FILENAME;
+    }
     }
 }
 
